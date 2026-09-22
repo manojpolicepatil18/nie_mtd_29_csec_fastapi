@@ -1,0 +1,29 @@
+Setup the mongo server, mongo shell.
+    Experimented CRUD ops with mongo db on students data. 
+
+    tickets: title, description, category, status #, assigned_to, resolved_by 
+    users: username, password, role 
+    customer raising the complaint to the service team 'refund is not done or recived'.
+    support team lead assigns the ticket raised by customer Support team lead 
+    Admin will create Janaki, Kushi, anb Ganavi users. 
+
+1. Create mongo database 'it_service_desk_db'
+use it_service_desk_db
+2. Add four users Admin, Janaki, Kushi, anb Ganavi
+db.users.insertMany( [
+    {username: "manoj", password: "manoj123", role:"customer"},
+    {username: "madhu", password: "madhu123", role:"employee"},
+    {username: "abhi", password: "abhi123", role:"support_team"},
+    {username: "manu", password: "manu123", role:""}
+])
+db.users.find()
+3. customer  will create the ticket 
+db.tickets.insertOne({title:'refund is not recived', description: 'issue in progress',
+  category:'software', status:'NEW'})
+db.tickets.find()
+4. employee assigns the ticket to support team
+db.tickets.updateOne({_id:ObjectId("???")}, {$set:{status:"ASSIGNED"}})
+db.tickets.find()
+5. team lead  will update the issue resolution status 
+db.tickets.updateOne({_id:ObjectId("???")}, {$set:{status:"RESOLVED"}})
+db.tickets.find()
